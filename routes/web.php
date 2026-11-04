@@ -1,0 +1,38 @@
+<?php
+
+use App\Http\Controllers\AIController;
+use App\Http\Controllers\AntisController;
+use App\Http\Controllers\auth\login;
+use App\Http\Controllers\auth\logout;
+use App\Http\Controllers\auth\Register;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', [AntisController::class, 'index']);
+Route::middleware('auth')->group(function () {
+    Route::post('/antis', [AntisController::class, 'store']);
+    Route::delete('/antis/{anti}', [AntisController::class, 'destroy'])
+        ->name('antis.destroy');
+});
+
+Route::view('/register', 'auth.register')
+    ->middleware('guest')
+    ->name('register');
+
+Route::post('/register', Register::class)
+    ->middleware('guest');
+
+Route::view('/login', 'auth.login')
+    ->middleware('guest')
+    ->name('login');
+
+Route::post('/login', login::class)
+    ->middleware('guest');
+
+Route::post('/logout', logout::class)
+    ->middleware('auth')
+    ->name('logout');
+
+Route::get('/ai/resume', AIController::class)
+    ->middleware('auth')
+    ->name('Resume');
+
