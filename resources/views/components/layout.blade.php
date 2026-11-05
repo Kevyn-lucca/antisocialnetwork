@@ -121,20 +121,32 @@
         </nav>
     </header>
 
-    {{-- Conteudo --}}
     <main id="conteudo" class="mx-auto w-full max-w-2xl flex-1 px-4 py-8 sm:py-10">
         {{ $slot }}
     </main>
+<footer class="border-t border-base-300 bg-base-100">
+    <div class="mx-auto flex max-w-2xl flex-col items-center justify-between gap-1 px-4 py-2 text-xs text-base-content/60 sm:flex-row">
+        <p>&copy; {{ now()->year }} Antis</p>
 
-    {{-- Rodape --}}
-    <footer class="border-t border-base-300 bg-base-100">
-        <div class="mx-auto flex max-w-2xl flex-col items-center justify-between gap-1 px-4 py-6 text-xs text-base-content/60 sm:flex-row">
-            <p>&copy; {{ now()->year }} Antis</p>
-            <p>Feito com Laravel</p>
+        <div class="flex items-center gap-2">
+            <a href="https://www.linkedin.com/in/kevyn-lucca-vieira-de-almeida-813503232/"
+               class="group flex items-center gap-2.5 rounded-lg pr-2 transition"
+               aria-label="meu github">
+                <span class="grid size-9 place-items-center transition group-hover:ring-primary">
+                    <img class="size-6 [[data-theme=dark]_&]:brightness-0 [[data-theme=dark]_&]:invert" src="{{ asset('images/github-svgrepo-com.svg') }}" alt="">
+                </span>
+            </a>
+
+            <a href="https://github.com/Kevyn-lucca"
+               class="group flex items-center gap-2.5 rounded-lg pr-2 transition"
+               aria-label="meu linkedin">
+                <span class="grid size-9 place-items-center transition group-hover:ring-primary">
+                    <img class="size-6 [[data-theme=dark]_&]:brightness-0 [[data-theme=dark]_&]:invert" src="{{ asset('images/linkedin-svgrepo-com.svg') }}" alt="">
+                </span>
+            </a>
         </div>
-    </footer>
-
-    {{-- Avisos --}}
+    </div>
+</footer>
     @foreach (['success' => 'alert-success', 'error' => 'alert-error'] as $key => $style)
         @if (session($key))
             <div class="toast toast-top toast-center z-50 w-full max-w-sm px-4" data-flash>
