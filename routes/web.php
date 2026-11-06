@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\AIController;
 use App\Http\Controllers\AntisController;
-use App\Http\Controllers\auth\login;
-use App\Http\Controllers\auth\logout;
-use App\Http\Controllers\auth\Register;
+use App\Http\Controllers\Auth\Login;
+use App\Http\Controllers\Auth\Logout;
+use App\Http\Controllers\Auth\Register;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AntisController::class, 'index']);
@@ -25,14 +25,13 @@ Route::view('/login', 'auth.login')
     ->middleware('guest')
     ->name('login');
 
-Route::post('/login', login::class)
+Route::post('/login', Login::class)
     ->middleware('guest');
 
-Route::post('/logout', logout::class)
+Route::post('/logout', Logout::class)
     ->middleware('auth')
     ->name('logout');
 
 Route::get('/ai/resume', AIController::class)
     ->middleware('auth')
     ->name('Resume');
-
